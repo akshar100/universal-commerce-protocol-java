@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - Universal Commerce Protocol</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Fira+Code&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">UCP</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="guide.html" class="active">User Guide</a>
+                <a href="api.html">API Reference</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>User Guide</h1>
+
+        <h2>Installation</h2>
+        <p>Add the starter to your project. Ensure you are using Spring Boot 3.2+ and Java 17+.</p>
+        <pre><code>// build.gradle
+dependencies {
+    implementation 'dev.ucomprotocol:ucp-spring-boot-starter:1.0.0'
+}</code></pre>
+
+        <h2>Configuration</h2>
+        <p>Configure the library using standard Spring Boot properties in <code>application.properties</code> or
+            <code>application.yml</code>.</p>
+
+        <pre><code># Default to mock provider for testing
+ucp.provider=mock
+
+# Example: Shopify Configuration (Future)
+# ucp.provider=shopify
+# ucp.endpoint=https://my-store.myshopify.com
+# ucp.api-key=shpat_xxxxxxxx</code></pre>
+
+        <h2>Using the Adapters</h2>
+        <p>Inject the <code>CommerceAdapter</code> bean into your services. This bean automatically resolves to the
+            correct implementation based on your configuration.</p>
+
+        <h3>Searching Products</h3>
+        <pre><code>@Autowired
+private CommerceAdapter commerceAdapter;
+
+public List&lt;Product&gt; search(String term) {
+    return commerceAdapter.getCatalogAdapter().searchProducts(term);
+}</code></pre>
+
+        <h3>Managing Carts</h3>
+        <pre><code>public Cart createCartForUser(String userId) {
+    return commerceAdapter.getCartAdapter().createCart(userId);
+}</code></pre>
+
+        <h2>Custom Adapters</h2>
+        <p>To implement your own adapter, simply implement the `CommerceAdapter` interface and register it as a Spring
+            Bean. The auto-configuration will back off and use your bean instead.</p>
+
+        <pre><code>@Configuration
+public class MyCommerceConfig {
+    @Bean
+    public CommerceAdapter myCustomAdapter() {
+        return new MyCustomCommerceAdapter();
+    }
+}</code></pre>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Universal Commerce Protocol. Built for developers.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Universal Commerce Protocol</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Fira+Code&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">UCP</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="guide.html">User Guide</a>
+                <a href="api.html" class="active">API Reference</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>API Reference</h1>
+
+        <h2>Core Interface: <code>CommerceAdapter</code></h2>
+        <p>The root interface for all commerce operations.</p>
+        <div class="card">
+            <h3>Methods</h3>
+            <ul>
+                <li><code>getCatalogAdapter()</code>: Access product catalog operations.</li>
+                <li><code>getCartAdapter()</code>: Access shopping cart operations.</li>
+                <li><code>getOrderAdapter()</code>: Access order management operations.</li>
+                <li><code>getCustomerAdapter()</code>: Access customer management operations.</li>
+            </ul>
+        </div>
+
+        <h2>Capability: <code>CatalogAdapter</code></h2>
+        <div class="card">
+            <h3>Key Methods</h3>
+            <ul>
+                <li><code>Optional&lt;Product&gt; getProductById(String id)</code></li>
+                <li><code>List&lt;Product&gt; searchProducts(String query)</code></li>
+                <li><code>List&lt;Product&gt; getProductsByCategory(String categoryId)</code></li>
+            </ul>
+        </div>
+
+        <h2>Capability: <code>CartAdapter</code></h2>
+        <div class="card">
+            <h3>Key Methods</h3>
+            <ul>
+                <li><code>Cart createCart(String customerId)</code></li>
+                <li><code>Cart addToCart(String cartId, String productId, int quantity)</code></li>
+                <li><code>Cart removeFromCart(String cartId, String itemId)</code></li>
+            </ul>
+        </div>
+
+        <h2>Domain Models</h2>
+        <h3><code>Product</code></h3>
+        <pre><code>String id;
+String sku;
+String name;
+String description;
+BigDecimal price;
+String currency;
+Map&lt;String, Object&gt; attributes;
+String imageUrl;</code></pre>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Universal Commerce Protocol. Built for developers.</p>
+    </footer>
+</body>
+
+</html>

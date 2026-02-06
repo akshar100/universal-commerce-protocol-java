@@ -1,0 +1,87 @@
+plugins {
+    id 'java-library'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'maven-publish'
+    id 'signing'
+    id 'net.thebugmc.gradle.sonatype-central-portal-publisher' version '1.2.3'
+}
+
+group = 'dev.ucomprotocol'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+    withJavadocJar()
+    withSourcesJar()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    
+    // Resilience4j for circuit breaking as mentioned in README features
+    implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.2.0'
+    
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            
+            pom {
+                name = 'Universal Commerce Protocol'
+                description = 'A unified commerce protocol for Spring Boot'
+                url = 'https://ucomprotocol.dev'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'ucomprotocol'
+                        name = 'UCP Team'
+                        email = 'team@ucomprotocol.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/ucomprotocol/ucp-java.git'
+                    developerConnection = 'scm:git:ssh://github.com/ucomprotocol/ucp-java.git'
+                    url = 'https://github.com/ucomprotocol/ucp-java'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    if (!version.endsWith("SNAPSHOT")) {
+        sign publishing.publications.mavenJava
+    }
+}
+
+centralPortal {
+    username = project.findProperty("centralPortalUsername")
+    password = project.findProperty("centralPortalPassword")
+    publishingType = 'AUTOMATIC' // Automatically publish after upload
+}

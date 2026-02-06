@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Commerce Protocol - Spring Boot Starter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">UCP</a>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="guide.html">User Guide</a>
+                <a href="api.html">API Reference</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Universal Commerce Protocol</h1>
+            <p>The definitive Spring Boot framework for protocol-agnostic commerce integrations. Connect to any platform with a unified, type-safe API.</p>
+            <a href="guide.html" class="cta-button">Get Started →</a>
+        </section>
+
+        <section class="container">
+            <div class="grid">
+                <div class="card">
+                    <h3>⚡ Unified Domain Model</h3>
+                    <p>Forget mapping nightmares. Use standard <code>Product</code>, <code>Cart</code>, and <code>Order</code> models that work consistent across Shopify, Magento, or custom backends.</p>
+                </div>
+                <div class="card">
+                    <h3>🔧 Spring Boot Native</h3>
+                    <p>Zero-boilerplate configuration. Just add the starter dependency, configuring your properties, and inject the <code>CommerceAdapter</code>.</p>
+                </div>
+                <div class="card">
+                    <h3>🔌 Extensible SPI</h3>
+                    <p>Built for growth. Implement your own adapters easily using our clear Service Provider Interfaces.</p>
+                </div>
+                <div class="card">
+                    <h3>🛡️ Resilience Built-in</h3>
+                    <p>Production ready with circuit breakers and fallback mechanisms baked right into the core.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2>Quick Install</h2>
+            <pre><code>dependencies {
+    implementation 'dev.ucomprotocol:ucp-spring-boot-starter:1.0.0'
+}</code></pre>
+
+            <h2>Simple Usage</h2>
+            <pre><code>@Service
+public class ProductService {
+    private final CommerceAdapter commerceAdapter;
+
+    public ProductService(CommerceAdapter commerceAdapter) {
+        this.commerceAdapter = commerceAdapter;
+    }
+
+    public Product getProduct(String id) {
+        return commerceAdapter.getCatalogAdapter()
+            .getProductById(id)
+            .orElseThrow();
+    }
+}</code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Universal Commerce Protocol. Built for developers.</p>
+    </footer>
+</body>
+</html>

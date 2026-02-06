@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 
 @AutoConfiguration
@@ -26,5 +27,12 @@ public class UcpAutoConfiguration {
         // We will implement a basic MockCommerceAdapter inline or in a separate file
         // for the library to function.
         return new dev.ucomprotocol.spi.mock.MockCommerceAdapter();
+    }
+
+    @Bean
+    @ConditionalOnWebApplication
+    public dev.ucomprotocol.discovery.UcpDiscoveryController ucpDiscoveryController(UcpProperties properties,
+            CommerceAdapter adapter) {
+        return new dev.ucomprotocol.discovery.UcpDiscoveryController(properties, adapter);
     }
 }

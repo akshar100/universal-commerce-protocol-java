@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Guide - Universal Commerce Protocol</title>
+    <title>User Guide - UCP Java</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Fira+Code&display=swap"
         rel="stylesheet">
@@ -13,11 +13,12 @@
 <body>
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo">UCP</a>
+            <a href="index.html" class="logo">UCP Java</a>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="guide.html" class="active">User Guide</a>
                 <a href="api.html">API Reference</a>
+                <a href="javadocs/index.html">Javadocs</a>
             </nav>
         </div>
     </header>
@@ -34,7 +35,8 @@ dependencies {
 
         <h2>Configuration</h2>
         <p>Configure the library using standard Spring Boot properties in <code>application.properties</code> or
-            <code>application.yml</code>.</p>
+            <code>application.yml</code>.
+        </p>
 
         <pre><code># Default to mock provider for testing
 ucp.provider=mock
@@ -76,7 +78,7 @@ public class MyCommerceConfig {
     </main>
 
     <footer>
-        <p>&copy; 2026 Universal Commerce Protocol. Built for developers.</p>
+        <p>&copy; 2026 UCP Java. Built for developers. <a href="https://ucp.dev/latest/">Official Documentation</a></p>
     </footer>
 </body>
 

@@ -8,7 +8,10 @@ plugins {
 }
 
 group = 'dev.ucomprotocol'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
+description = 'A unified commerce protocol library for Spring Boot'
+
+
 
 java {
     sourceCompatibility = '17'
@@ -42,14 +45,26 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+tasks.named('bootJar') {
+    enabled = false
+}
+
+tasks.named('jar') {
+    enabled = true
+}
+
+tasks.named('javadoc') {
+    destinationDir = file("$projectDir/website/javadocs")
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
             
             pom {
-                name = 'Universal Commerce Protocol'
-                description = 'A unified commerce protocol for Spring Boot'
+                name = 'Universal Commerce Protocol Java Library'
+                description = 'A unified commerce protocol library for Spring Boot.'
                 url = 'https://ucomprotocol.dev'
                 licenses {
                     license {
@@ -60,15 +75,44 @@ publishing {
                 developers {
                     developer {
                         id = 'ucomprotocol'
-                        name = 'UCP Team'
-                        email = 'team@ucomprotocol.dev'
+                        name = 'Akshar'
+                        email = 'akshar.iitb@gmail.com'
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://github.com/ucomprotocol/ucp-java.git'
-                    developerConnection = 'scm:git:ssh://github.com/ucomprotocol/ucp-java.git'
-                    url = 'https://github.com/ucomprotocol/ucp-java'
+                    connection = 'scm:git:git://github.com/akshar100/universal-commerce-protocol-java.git'
+                    developerConnection = 'scm:git:ssh://git@github.com/akshar100/universal-commerce-protocol-java.git'
+                    url = 'https://github.com/akshar100/universal-commerce-protocol-java'
                 }
+            }
+        }
+    }
+}
+
+// Configures the publication created by the central-portal-publisher plugin
+publishing.publications.withType(MavenPublication) {
+    if (name == 'centralPortal') {
+        pom {
+            name = 'Universal Commerce Protocol Java Library'
+            description = 'A unified commerce protocol library for Spring Boot.'
+            url = 'https://ucomprotocol.dev'
+            licenses {
+                license {
+                    name = 'The Apache License, Version 2.0'
+                    url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+            developers {
+                developer {
+                    id = 'ucomprotocol'
+                    name = 'Akshar'
+                    email = 'akshar.iitb@gmail.com'
+                }
+            }
+            scm {
+                connection = 'scm:git:git://github.com/akshar100/universal-commerce-protocol-java.git'
+                developerConnection = 'scm:git:ssh://git@github.com/akshar100/universal-commerce-protocol-java.git'
+                url = 'https://github.com/akshar100/universal-commerce-protocol-java'
             }
         }
     }

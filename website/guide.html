@@ -63,6 +63,60 @@ public List&lt;Product&gt; search(String term) {
     return commerceAdapter.getCartAdapter().createCart(userId);
 }</code></pre>
 
+        <h2>Discovery Endpoint</h2>
+        <p>One of the key features of UCP Java is the <strong>Automatic Discovery Endpoint</strong>. This allows clients
+            to query your service and discover which capabilities it supports (e.g., does it support Carts? Orders?).
+        </p>
+
+        <h3>How to Enable</h3>
+        <p>To enable the <code>/.well-known/ucp</code> endpoint, you simply need to include the Spring Boot Web starter
+            alongside UCP Java. The library detects if you are running a web application and automatically registers the
+            controller.</p>
+        <pre><code>// build.gradle
+dependencies {
+    // 1. Add UCP Java
+    implementation 'dev.ucomprotocol:ucp-spring-boot-starter:1.0.0'
+    
+    // 2. Ensure you have the Web Starter (Discovery only works in web apps)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}</code></pre>
+
+        <h3>Verification</h3>
+        <p>Once your application starts, you can verify the endpoint is active using <code>curl</code>:</p>
+        <pre><code>curl http://localhost:8080/.well-known/ucp</code></pre>
+
+        <p><strong>Response Example:</strong></p>
+        <pre><code>GET /.well-known/ucp
+{
+  "ucpVersion": "1.0",
+  "provider": "mock",
+  "capabilities": [
+    "catalog",
+    "cart",
+    "order",
+    "customer"
+  ]
+}</code></pre>
+        <p>This response tells you:</p>
+        <ul>
+            <li><strong>Protocol Version</strong>: 1.0</li>
+            <li><strong>Provider</strong>: You are currently using the "mock" provider (default).</li>
+            <li><strong>Capabilities</strong>: The current adapter supports catalog browsing, cart management, ordering,
+                and customer management.</li>
+        </ul>
+
+        <h3>Changing Providers</h3>
+        <p>To return a different provider in the discovery info, simply change your configuration in
+            <code>application.properties</code>:
+        </p>
+        <pre><code>ucp.provider=shopify</code></pre>
+        <p>The endpoint will immediately reflect this change:</p>
+        <pre><code>{
+  "ucpVersion": "1.0",
+  "provider": "shopify",
+  ...
+}</code></pre>
+
         <h2>Custom Adapters</h2>
         <p>To implement your own adapter, simply implement the `CommerceAdapter` interface and register it as a Spring
             Bean. The auto-configuration will back off and use your bean instead.</p>

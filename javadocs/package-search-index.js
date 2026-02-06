@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"dev.ucomprotocol.autoconfigure"},{"l":"dev.ucomprotocol.model"},{"l":"dev.ucomprotocol.spi"},{"l":"dev.ucomprotocol.spi.mock"}];updateSearchResults();

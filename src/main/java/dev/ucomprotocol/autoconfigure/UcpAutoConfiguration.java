@@ -10,12 +10,29 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * Auto-configuration for the Universal Commerce Protocol (UCP) library.
+ * <p>
+ * This configuration:
+ * <ul>
+ * <li>Enables UCP properties binding.</li>
+ * <li>Configures a default {@link CommerceAdapter} if none is provided.</li>
+ * <li>Registers the {@link dev.ucomprotocol.discovery.UcpDiscoveryController}
+ * for capability discovery.</li>
+ * </ul>
+ */
 @AutoConfiguration
 @EnableConfigurationProperties(UcpProperties.class)
 public class UcpAutoConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(UcpAutoConfiguration.class);
 
+    /**
+     * Provides a default Mock Commerce Adapter if no other adapter is present
+     * and the provider property is set to "mock" (default).
+     *
+     * @return a mock implementation of {@link CommerceAdapter}
+     */
     @Bean
     @ConditionalOnMissingBean(CommerceAdapter.class)
     @ConditionalOnProperty(name = "ucp.provider", havingValue = "mock", matchIfMissing = true)
@@ -29,6 +46,13 @@ public class UcpAutoConfiguration {
         return new dev.ucomprotocol.spi.mock.MockCommerceAdapter();
     }
 
+    /**
+     * Registers the UCP Discovery Controller.
+     *
+     * @param properties the UCP configuration properties
+     * @param adapter    the configured commerce adapter
+     * @return the controller instance
+     */
     @Bean
     @ConditionalOnWebApplication
     public dev.ucomprotocol.discovery.UcpDiscoveryController ucpDiscoveryController(UcpProperties properties,

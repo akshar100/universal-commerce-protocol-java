@@ -69,6 +69,8 @@ public class UcpDiscoveryController {
 
     /**
      * Top-level response wrapper for UCP discovery.
+     *
+     * @param ucp the protocol information object
      */
     public record DiscoveryResponse(UcpInfo ucp) {
     }

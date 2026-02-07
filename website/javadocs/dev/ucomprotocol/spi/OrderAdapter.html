@@ -87,6 +87,10 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">OrderAdapter</span></div>
+<div class="block">Adapter interface for order management operations.
+ <p>
+ Implement this interface to connect to a commerce platform's order processing
+ system.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -103,16 +107,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../model/Order.html" title="class in dev.ucomprotocol.model">Order</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#cancelOrder(java.lang.String)" class="member-name-link">cancelOrder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;orderId)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Cancels an existing order.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../model/Order.html" title="class in dev.ucomprotocol.model">Order</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createOrder(java.lang.String)" class="member-name-link">createOrder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;cartId)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Creates an order from a cart.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../model/Order.html" title="class in dev.ucomprotocol.model">Order</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getOrder(java.lang.String)" class="member-name-link">getOrder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;orderId)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves an order by its ID.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../model/Order.html" title="class in dev.ucomprotocol.model">Order</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getOrdersByCustomer(java.lang.String)" class="member-name-link">getOrdersByCustomer</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;customerId)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves all orders for a specific customer.</div>
+</div>
 </div>
 </div>
 </div>
@@ -131,24 +143,52 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="createOrder(java.lang.String)">
 <h3>createOrder</h3>
 <div class="member-signature"><span class="return-type"><a href="../model/Order.html" title="class in dev.ucomprotocol.model">Order</a></span>&nbsp;<span class="element-name">createOrder</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;cartId)</span></div>
+<div class="block">Creates an order from a cart.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>cartId</code> - the unique identifier of the cart to convert into an order</dd>
+<dt>Returns:</dt>
+<dd>the created order</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getOrder(java.lang.String)">
 <h3>getOrder</h3>
 <div class="member-signature"><span class="return-type"><a href="../model/Order.html" title="class in dev.ucomprotocol.model">Order</a></span>&nbsp;<span class="element-name">getOrder</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;orderId)</span></div>
+<div class="block">Retrieves an order by its ID.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>orderId</code> - the unique identifier of the order</dd>
+<dt>Returns:</dt>
+<dd>the requested order, or null if not found</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getOrdersByCustomer(java.lang.String)">
 <h3>getOrdersByCustomer</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../model/Order.html" title="class in dev.ucomprotocol.model">Order</a>&gt;</span>&nbsp;<span class="element-name">getOrdersByCustomer</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;customerId)</span></div>
+<div class="block">Retrieves all orders for a specific customer.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>customerId</code> - the unique identifier of the customer</dd>
+<dt>Returns:</dt>
+<dd>a list of the customer's orders, or an empty list if none found</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="cancelOrder(java.lang.String)">
 <h3>cancelOrder</h3>
 <div class="member-signature"><span class="return-type"><a href="../model/Order.html" title="class in dev.ucomprotocol.model">Order</a></span>&nbsp;<span class="element-name">cancelOrder</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;orderId)</span></div>
+<div class="block">Cancels an existing order.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>orderId</code> - the unique identifier of the order to cancel</dd>
+<dt>Returns:</dt>
+<dd>the updated order with cancelled status</dd>
+</dl>
 </section>
 </li>
 </ul>

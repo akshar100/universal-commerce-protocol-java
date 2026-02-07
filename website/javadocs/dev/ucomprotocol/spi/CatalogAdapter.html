@@ -87,6 +87,9 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">CatalogAdapter</span></div>
+<div class="block">Adapter interface for product catalog operations.
+ <p>
+ Implement this interface to connect to a commerce platform's product catalog.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -103,13 +106,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../model/Product.html" title="class in dev.ucomprotocol.model">Product</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getProductById(java.lang.String)" class="member-name-link">getProductById</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves a product by its ID.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../model/Product.html" title="class in dev.ucomprotocol.model">Product</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getProductsByCategory(java.lang.String)" class="member-name-link">getProductsByCategory</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;categoryId)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves products belonging to a specific category.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../model/Product.html" title="class in dev.ucomprotocol.model">Product</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#searchProducts(java.lang.String)" class="member-name-link">searchProducts</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;query)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Searches for products matching a query string.</div>
+</div>
 </div>
 </div>
 </div>
@@ -128,18 +137,40 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getProductById(java.lang.String)">
 <h3>getProductById</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../model/Product.html" title="class in dev.ucomprotocol.model">Product</a>&gt;</span>&nbsp;<span class="element-name">getProductById</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</span></div>
+<div class="block">Retrieves a product by its ID.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - the unique identifier of the product</dd>
+<dt>Returns:</dt>
+<dd>an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> containing the product if found, or empty
+         otherwise</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="searchProducts(java.lang.String)">
 <h3>searchProducts</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../model/Product.html" title="class in dev.ucomprotocol.model">Product</a>&gt;</span>&nbsp;<span class="element-name">searchProducts</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;query)</span></div>
+<div class="block">Searches for products matching a query string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>query</code> - the search query</dd>
+<dt>Returns:</dt>
+<dd>a list of matching products, or an empty list if none found</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getProductsByCategory(java.lang.String)">
 <h3>getProductsByCategory</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../model/Product.html" title="class in dev.ucomprotocol.model">Product</a>&gt;</span>&nbsp;<span class="element-name">getProductsByCategory</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;categoryId)</span></div>
+<div class="block">Retrieves products belonging to a specific category.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>categoryId</code> - the unique identifier of the category</dd>
+<dt>Returns:</dt>
+<dd>a list of products in the category, or an empty list if none found</dd>
+</dl>
 </section>
 </li>
 </ul>

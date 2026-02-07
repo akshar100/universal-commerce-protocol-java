@@ -2,6 +2,12 @@ package dev.ucomprotocol.autoconfigure;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties for the Universal Commerce Protocol library.
+ * <p>
+ * Mapped to the {@code ucp} prefix in application configuration (e.g.,
+ * application.properties).
+ */
 @ConfigurationProperties(prefix = "ucp")
 public class UcpProperties {
     /**

@@ -31,8 +31,8 @@ public class UcpDiscoveryControllerTest {
         mockMvc.perform(get("/.well-known/ucp"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.ucp.version").value("2026-01-23"))
-                .andExpect(jsonPath("$.ucp.capabilities").isMap())
-                .andExpect(jsonPath("$.ucp.capabilities['dev.ucp.shopping.catalog']").isArray())
-                .andExpect(jsonPath("$.ucp.capabilities['dev.ucp.shopping.cart']").isArray());
+                .andExpect(jsonPath("$.ucp.capabilities").isArray())
+                .andExpect(jsonPath("$.ucp.capabilities[?(@.type == 'dev.ucp.shopping.catalog')]").exists())
+                .andExpect(jsonPath("$.ucp.capabilities[?(@.type == 'dev.ucp.shopping.cart')]").exists());
     }
 }

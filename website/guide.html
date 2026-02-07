@@ -33,6 +33,16 @@ dependencies {
     implementation 'dev.ucomprotocol:ucp-spring-boot-starter:1.0.0'
 }</code></pre>
 
+        <h2>Example Application</h2>
+        <p>A fully functional example application is available in the <code>examples/ucp-example</code> directory (of
+            the source repository).
+            This project demonstrates how to configure the library, use the mock adapter, and verify the discovery
+            endpoint.
+        </p>
+        <p>To run the example:</p>
+        <pre><code>cd examples/ucp-example
+../../gradlew bootRun</code></pre>
+
         <h2>Configuration</h2>
         <p>Configure the library using standard Spring Boot properties in <code>application.properties</code> or
             <code>application.yml</code>.
@@ -90,14 +100,17 @@ dependencies {
 {
   "ucp": {
     "version": "2026-01-23",
-    "capabilities": {
-      "dev.ucp.shopping.catalog": [
-         { "version": "2026-01-23", "spec": "..." }
-      ],
-      "dev.ucp.shopping.cart": [ ... ],
-      "dev.ucp.shopping.order": [ ... ],
-      "dev.ucp.common.identity": [ ... ]
-    }
+    "capabilities": [
+      {
+        "type": "dev.ucp.shopping.catalog",
+        "version": "2026-01-23", 
+        "spec": "..." 
+      },
+      { "type": "dev.ucp.shopping.cart", ... },
+      { "type": "dev.ucp.shopping.order", ... },
+      { "type": "dev.ucp.common.identity", ... }
+    ],
+    "services": []
   }
 }</code></pre>
         <p>This response tells you:</p>
@@ -155,9 +168,13 @@ public class MyCommerceConfig {
         <pre><code>{
   "ucp": {
     "version": "2026-01-23",
-    "capabilities": {
-      "dev.ucp.shopping.catalog": [ ... ]
-    }
+    "capabilities": [
+      {
+        "type": "dev.ucp.shopping.catalog",
+        ...
+      }
+    ],
+    "services": []
   }
 }</code></pre>
 

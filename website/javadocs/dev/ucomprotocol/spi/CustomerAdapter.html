@@ -87,6 +87,9 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">CustomerAdapter</span></div>
+<div class="block">Adapter interface for customer management operations.
+ <p>
+ Implement this interface to connect to a commerce platform's customer data.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -103,14 +106,20 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createCustomer(dev.ucomprotocol.model.Customer)" class="member-name-link">createCustomer</a><wbr>(<a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a>&nbsp;customer)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Creates a new customer.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getCustomer(java.lang.String)" class="member-name-link">getCustomer</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves a customer by their ID.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#updateCustomer(java.lang.String,dev.ucomprotocol.model.Customer)" class="member-name-link">updateCustomer</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id,
  <a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a>&nbsp;customer)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Updates an existing customer.</div>
+</div>
 </div>
 </div>
 </div>
@@ -129,12 +138,27 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getCustomer(java.lang.String)">
 <h3>getCustomer</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a>&gt;</span>&nbsp;<span class="element-name">getCustomer</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</span></div>
+<div class="block">Retrieves a customer by their ID.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - the unique identifier of the customer</dd>
+<dt>Returns:</dt>
+<dd>an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> containing the customer if found, or empty
+         otherwise</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createCustomer(dev.ucomprotocol.model.Customer)">
 <h3>createCustomer</h3>
 <div class="member-signature"><span class="return-type"><a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a></span>&nbsp;<span class="element-name">createCustomer</span><wbr><span class="parameters">(<a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a>&nbsp;customer)</span></div>
+<div class="block">Creates a new customer.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>customer</code> - the customer data to create</dd>
+<dt>Returns:</dt>
+<dd>the created customer</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -142,6 +166,14 @@ loadScripts(document, 'script');</script>
 <h3>updateCustomer</h3>
 <div class="member-signature"><span class="return-type"><a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a></span>&nbsp;<span class="element-name">updateCustomer</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id,
  <a href="../model/Customer.html" title="class in dev.ucomprotocol.model">Customer</a>&nbsp;customer)</span></div>
+<div class="block">Updates an existing customer.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - the unique identifier of the customer to update</dd>
+<dd><code>customer</code> - the updated customer data</dd>
+<dt>Returns:</dt>
+<dd>the updated customer</dd>
+</dl>
 </section>
 </li>
 </ul>

@@ -38,32 +38,29 @@ Expected output (JSON):
 {
   "ucp": {
     "version": "2026-01-23",
-    "capabilities": {
-      "dev.ucp.shopping.catalog": [
-        {
-          "version": "2026-01-23",
-          "spec": "https://ucp.dev/specification/catalog"
-        }
-      ],
-      "dev.ucp.shopping.cart": [
-        {
-          "version": "2026-01-23",
-          "spec": "https://ucp.dev/specification/cart"
-        }
-      ],
-      "dev.ucp.shopping.order": [
-        {
-          "version": "2026-01-23",
-          "spec": "https://ucp.dev/specification/order"
-        }
-      ],
-      "dev.ucp.common.identity": [
-        {
-          "version": "2026-01-23",
-          "spec": "https://ucp.dev/specification/identity"
-        }
-      ]
-    }
+    "capabilities": [
+      {
+        "type": "dev.ucp.shopping.catalog",
+        "version": "2026-01-23",
+        "spec": "https://ucp.dev/specification/catalog"
+      },
+      {
+        "type": "dev.ucp.shopping.cart",
+        "version": "2026-01-23",
+        "spec": "https://ucp.dev/specification/cart"
+      },
+      {
+        "type": "dev.ucp.shopping.order",
+        "version": "2026-01-23",
+        "spec": "https://ucp.dev/specification/order"
+      },
+      {
+        "type": "dev.ucp.common.identity",
+        "version": "2026-01-23",
+        "spec": "https://ucp.dev/specification/identity"
+      }
+    ],
+    "services": []
   }
 }
 ```

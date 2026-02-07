@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Controller that exposes the Universal Commerce Protocol (UCP) discovery
@@ -47,27 +45,26 @@ public class UcpDiscoveryController {
 
     @GetMapping
     public DiscoveryResponse getDiscoveryInfo() {
-        Map<String, List<CapabilityDetail>> capabilities = new HashMap<>();
+        List<Capability> capabilities = new ArrayList<>();
         String ucpVersion = "2026-01-23";
 
         if (commerceAdapter.getCatalogAdapter() != null) {
-            capabilities.put("dev.ucp.shopping.catalog",
-                    List.of(new CapabilityDetail(ucpVersion, "https://ucp.dev/specification/catalog")));
+            capabilities.add(
+                    new Capability("dev.ucp.shopping.catalog", ucpVersion, "https://ucp.dev/specification/catalog"));
         }
         if (commerceAdapter.getCartAdapter() != null) {
-            capabilities.put("dev.ucp.shopping.cart",
-                    List.of(new CapabilityDetail(ucpVersion, "https://ucp.dev/specification/cart")));
+            capabilities.add(new Capability("dev.ucp.shopping.cart", ucpVersion, "https://ucp.dev/specification/cart"));
         }
         if (commerceAdapter.getOrderAdapter() != null) {
-            capabilities.put("dev.ucp.shopping.order",
-                    List.of(new CapabilityDetail(ucpVersion, "https://ucp.dev/specification/order")));
+            capabilities
+                    .add(new Capability("dev.ucp.shopping.order", ucpVersion, "https://ucp.dev/specification/order"));
         }
         if (commerceAdapter.getCustomerAdapter() != null) {
-            capabilities.put("dev.ucp.common.identity",
-                    List.of(new CapabilityDetail(ucpVersion, "https://ucp.dev/specification/identity")));
+            capabilities.add(
+                    new Capability("dev.ucp.common.identity", ucpVersion, "https://ucp.dev/specification/identity"));
         }
 
-        return new DiscoveryResponse(new UcpInfo(ucpVersion, capabilities));
+        return new DiscoveryResponse(new UcpInfo(ucpVersion, capabilities, Collections.emptyList()));
     }
 
     /**
@@ -80,17 +77,27 @@ public class UcpDiscoveryController {
      * Detailed UCP protocol information.
      * 
      * @param version      The protocol version (e.g., 2026-01-23).
-     * @param capabilities A map of capability keys (namespace) to their details.
+     * @param capabilities A list of supported capabilities.
+     * @param services     A list of available services (endpoints).
      */
-    public record UcpInfo(String version, Map<String, List<CapabilityDetail>> capabilities) {
+    public record UcpInfo(String version, List<Capability> capabilities, List<Service> services) {
     }
 
     /**
-     * Details about a specific capability interaction.
+     * Details about a specific capability.
      * 
+     * @param type    The capability namespace/type.
      * @param version The version of the capability spec supported.
      * @param spec    The URL to the official UCP specification for this capability.
      */
-    public record CapabilityDetail(String version, String spec) {
+    public record Capability(String type, String version, String spec) {
+    }
+
+    /**
+     * Details about a service endpoint.
+     * (Placeholder for now as no services are strictly defined in this discovery
+     * view yet)
+     */
+    public record Service(String id, String type, String endpoint) {
     }
 }

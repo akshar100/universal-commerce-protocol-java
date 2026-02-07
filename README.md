@@ -58,21 +58,23 @@ curl http://localhost:8080/.well-known/ucp
 **Response Example:**
 ```json
 {
-  "ucpVersion": "1.0",
-  "provider": "mock",
-  "capabilities": [
-    "catalog",
-    "cart",
-    "order",
-    "customer"
-  ]
+  "ucp": {
+    "version": "2026-01-23",
+    "capabilities": {
+      "dev.ucp.shopping.catalog": [
+         { "version": "2026-01-23", "spec": "..." }
+      ],
+      "dev.ucp.shopping.cart": [ ... ],
+      "dev.ucp.shopping.order": [ ... ],
+      "dev.ucp.common.identity": [ ... ]
+    }
+  }
 }
 ```
 
 This response tells you:
-1.  **Protocol Version**: 1.0
-2.  **Provider**: You are currently using the "mock" provider (default).
-3.  **Capabilities**: The current adapter supports catalog browsing, cart management, ordering, and customer management.
+1.  **Protocol Version**: 2026-01-23
+2.  **Capabilities**: A map of supported capabilities and their details.
 
 ### Changing Providers
 
@@ -82,11 +84,4 @@ To return a different provider in the discovery info, simply change your configu
 ucp.provider=shopify
 ```
 
-The endpoint will immediately reflect this change:
-```json
-{
-  "ucpVersion": "1.0",
-  "provider": "shopify",
-  ...
-}
-```
+The endpoint will use the Shopify adapter to determine capabilities.

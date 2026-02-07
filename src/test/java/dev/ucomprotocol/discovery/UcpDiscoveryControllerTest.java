@@ -30,8 +30,9 @@ public class UcpDiscoveryControllerTest {
     public void shouldReturnDiscoveryInfo() throws Exception {
         mockMvc.perform(get("/.well-known/ucp"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.ucpVersion").value("1.0"))
-                .andExpect(jsonPath("$.provider").value("mock"))
-                .andExpect(jsonPath("$.capabilities").isArray());
+                .andExpect(jsonPath("$.ucp.version").value("2026-01-23"))
+                .andExpect(jsonPath("$.ucp.capabilities").isMap())
+                .andExpect(jsonPath("$.ucp.capabilities['dev.ucp.shopping.catalog']").isArray())
+                .andExpect(jsonPath("$.ucp.capabilities['dev.ucp.shopping.cart']").isArray());
     }
 }

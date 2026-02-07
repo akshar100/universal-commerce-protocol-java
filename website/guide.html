@@ -88,21 +88,22 @@ dependencies {
         <p><strong>Response Example:</strong></p>
         <pre><code>GET /.well-known/ucp
 {
-  "ucpVersion": "1.0",
-  "provider": "mock",
-  "capabilities": [
-    "catalog",
-    "cart",
-    "order",
-    "customer"
-  ]
+  "ucp": {
+    "version": "2026-01-23",
+    "capabilities": {
+      "dev.ucp.shopping.catalog": [
+         { "version": "2026-01-23", "spec": "..." }
+      ],
+      "dev.ucp.shopping.cart": [ ... ],
+      "dev.ucp.shopping.order": [ ... ],
+      "dev.ucp.common.identity": [ ... ]
+    }
+  }
 }</code></pre>
         <p>This response tells you:</p>
         <ul>
-            <li><strong>Protocol Version</strong>: 1.0</li>
-            <li><strong>Provider</strong>: You are currently using the "mock" provider (default).</li>
-            <li><strong>Capabilities</strong>: The current adapter supports catalog browsing, cart management, ordering,
-                and customer management.</li>
+            <li><strong>Protocol Version</strong>: 2026-01-23</li>
+            <li><strong>Capabilities</strong>: A map of supported capabilities and their details.</li>
         </ul>
 
         <h3>Changing Providers</h3>
@@ -110,12 +111,7 @@ dependencies {
             <code>application.properties</code>:
         </p>
         <pre><code>ucp.provider=shopify</code></pre>
-        <p>The endpoint will immediately reflect this change:</p>
-        <pre><code>{
-  "ucpVersion": "1.0",
-  "provider": "shopify",
-  ...
-}</code></pre>
+        <p>The endpoint will use the Shopify adapter to determine capabilities.</p>
 
         <h2>Custom Adapters</h2>
         <p>To implement your own adapter, simply implement the `CommerceAdapter` interface and register it as a Spring
@@ -127,6 +123,42 @@ public class MyCommerceConfig {
     public CommerceAdapter myCustomAdapter() {
         return new MyCustomCommerceAdapter();
     }
+}</code></pre>
+
+        <h3>Defining Capabilities</h3>
+        <p>The Discovery Endpoint automatically detects which capabilities your adapter supports. It does this by
+            checking which methods return `null`.</p>
+        <p>For example, if you only support the **Catalog**, you can implement your adapter like this:</p>
+        <pre><code>public class ReadOnlyCommerceAdapter implements CommerceAdapter {
+    
+    @Override
+    public CatalogAdapter getCatalogAdapter() {
+        return new MyCatalogAdapter(); // Supported
+    }
+
+    @Override
+    public CartAdapter getCartAdapter() {
+        return null; // Not Supported
+    }
+
+    @Override
+    public OrderAdapter getOrderAdapter() {
+        return null; // Not Supported
+    }
+
+    @Override
+    public CustomerAdapter getCustomerAdapter() {
+        return null; // Not Supported
+    }
+}</code></pre>
+        <p>When you query the discovery endpoint, it will correctly report:</p>
+        <pre><code>{
+  "ucp": {
+    "version": "2026-01-23",
+    "capabilities": {
+      "dev.ucp.shopping.catalog": [ ... ]
+    }
+  }
 }</code></pre>
 
     </main>

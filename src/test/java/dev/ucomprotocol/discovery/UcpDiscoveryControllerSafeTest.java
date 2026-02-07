@@ -4,6 +4,7 @@ import dev.ucomprotocol.autoconfigure.UcpProperties;
 import dev.ucomprotocol.spi.CommerceAdapter;
 import dev.ucomprotocol.spi.CatalogAdapter;
 import dev.ucomprotocol.spi.CartAdapter;
+import dev.ucomprotocol.spi.CustomerAdapter;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -24,11 +25,11 @@ public class UcpDiscoveryControllerSafeTest {
 
         CommerceAdapter mockAdapter = Mockito.mock(CommerceAdapter.class);
 
-        // Only return Catalog and Cart adapters
+        // Only return Catalog and Customer (Identity) adapters
         when(mockAdapter.getCatalogAdapter()).thenReturn(Mockito.mock(CatalogAdapter.class));
-        when(mockAdapter.getCartAdapter()).thenReturn(Mockito.mock(CartAdapter.class));
+        when(mockAdapter.getCustomerAdapter()).thenReturn(Mockito.mock(CustomerAdapter.class));
+        when(mockAdapter.getCartAdapter()).thenReturn(null);
         when(mockAdapter.getOrderAdapter()).thenReturn(null);
-        when(mockAdapter.getCustomerAdapter()).thenReturn(null);
 
         // Initialize Controller
         UcpDiscoveryController controller = new UcpDiscoveryController(properties, mockAdapter);
@@ -37,10 +38,9 @@ public class UcpDiscoveryControllerSafeTest {
         UcpDiscoveryController.DiscoveryResponse response = controller.getDiscoveryInfo();
 
         // Verify
-        assertEquals("1.0", response.ucpVersion());
-        assertEquals("shopify", response.provider());
-        assertEquals(2, response.capabilities().size());
-        assertTrue(response.capabilities().contains("catalog"));
-        assertTrue(response.capabilities().contains("cart"));
+        assertEquals("2026-01-23", response.ucp().version());
+        assertEquals(2, response.ucp().capabilities().size());
+        assertTrue(response.ucp().capabilities().containsKey("dev.ucp.shopping.catalog"));
+        assertTrue(response.ucp().capabilities().containsKey("dev.ucp.common.identity"));
     }
 }
